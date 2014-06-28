@@ -83,7 +83,10 @@ module.exports = function(grunt) {
     handlebars: {
       compile: {
         options: {
-          namespace: "JST"
+          namespace: "JST",
+          processName: function(filePath) {
+            return /\/([a-z0-9_]+)\.hbs$/gi.exec(filePath)[1];
+          }
         },
         files: {
           'public/js/templates.js': ['views/templates/**/*.hbs']
